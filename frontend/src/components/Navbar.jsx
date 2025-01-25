@@ -36,7 +36,6 @@ const Navbar = () => {
           <li className='py-1'>CONTACT</li>
           <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
         </NavLink>
-{/*         <a target="_blank" href="http://localhost:5174" className="border px-5 text-xs py-1.5 rounded-full">Admin Panel</a> */}
         <a target="_blank" href="https://prescriptobypm-admin.onrender.com/" className="border px-5 text-xs py-1.5 rounded-full">Admin Panel</a>
       </ul>
 
