@@ -11,7 +11,7 @@
 ---
 
 ## Demo
-![image](https://github.com/user-attachments/assets/ca7ac32e-77e2-4831-98a6-d50a1b2bb37d)
+![image](https://github.com/prathamdmehta/prescripto/blob/main/frontend/src/assets/readme-img.png)
 
 ---
 
