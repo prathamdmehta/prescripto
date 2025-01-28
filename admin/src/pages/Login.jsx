@@ -11,7 +11,8 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL
+  // const backendUrl = import.meta.env.VITE_BACKEND_URL
+  const backendUrl = "https://prescriptobypm-backend.onrender.com"
 
   const { setDToken } = useContext(DoctorContext)
   const { setAToken } = useContext(AdminContext)

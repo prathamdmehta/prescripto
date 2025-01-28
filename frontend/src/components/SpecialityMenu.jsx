@@ -56,4 +56,8 @@ const SpecialityMenu = () => {
     );
 };
 
+<<<<<<< HEAD
 export default SpecialityMenu;
+=======
+export default SpecialityMenu
+>>>>>>> 358b81e73f52cd033afaeadbdca276faf840ff39
