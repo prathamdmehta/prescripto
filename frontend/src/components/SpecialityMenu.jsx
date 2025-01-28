@@ -47,7 +47,7 @@ const SpecialityMenu = () => {
                         key={index}
                         ref={(el) => (logosRef.current[index] = el)} // Add each logo to the reference array
                     >
-                        <img className="w-16 sm:w-24 mb-2" src={item.image} alt={item.speciality} />
+                        <img className="w-16 sm:w-24 mb-2 hover:translate-y-[-10px] transition-all duration-500" src={item.image} alt={item.speciality} />
                         <p>{item.speciality}</p>
                     </Link>
                 ))}
