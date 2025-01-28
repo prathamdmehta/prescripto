@@ -85,4 +85,3 @@ const Header = () => {
 };
 
 export default Header;
-// this code will animate the header section when the user scrolls down the page. The left section will fade in and slide up, while the right section will fade in and slide in from the right.
