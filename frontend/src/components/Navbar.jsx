@@ -53,7 +53,7 @@ const Navbar = () => {
         <NavLink to='/contact' >
           <li className='nav-item py-1'>CONTACT</li>
         </NavLink>
-        <a target="_blank" href="http://localhost:5174/" className="border px-5 text-xs py-1.5 rounded-full">Admin Panel</a>
+        <a target="_blank" href="http://prescriptobypm-admin.onrender.com/" className="border px-5 text-xs py-1.5 rounded-full">Admin Panel</a>
       </ul>
 
       <div className='flex items-center gap-4 '>
