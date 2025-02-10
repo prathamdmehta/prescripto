@@ -29,13 +29,35 @@ const Chatbot = () => {
       lowerInput.includes("schedule a visit") ||
       lowerInput.includes("how to book")
     ) {
-      botResponse = "how can i book an appointment:\n1️⃣ First, log in to your account.\n2️⃣ Go to the 'All Doctors' section.\n3️⃣ Select the type of doctor you need.\n4️⃣ Choose an available time slot and confirm your booking.";
+      botResponse = 
+        "📅 How to book an appointment:\n" +
+        "1️⃣ First, log in to your account.\n" +
+        "2️⃣ Go to the 'All Doctors' section.\n" +
+        "3️⃣ Select the type of doctor you need.\n" +
+        "4️⃣ Choose an available time slot and confirm your booking.";
+    } else if (
+      lowerInput.includes("payment") || 
+      lowerInput.includes("refund") || 
+      lowerInput.includes("money") || 
+      lowerInput.includes("transaction")
+    ) {
+      botResponse = 
+        "💳 For payment-related queries:\n" +
+        "📧 Email: support@prescripto.com\n" +
+        "📞 Phone: +91 9876543210";
     }
 
     // Simulate bot response
     setTimeout(() => {
       setMessages((prev) => [...prev, { text: botResponse, sender: "bot" }]);
     }, 1000);
+  };
+
+  // Handle Enter key press to send message
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSend();
+    }
   };
 
   return (
@@ -59,8 +81,13 @@ const Chatbot = () => {
 
           <div style={styles.chatBody}>
             {messages.map((msg, index) => (
-              <div key={index} style={msg.sender === "user" ? styles.userMessage : styles.botMessage}>
-                {msg.text}
+              <div 
+                key={index} 
+                style={msg.sender === "user" ? styles.userMessage : styles.botMessage}
+              >
+                {msg.text.split("\n").map((line, i) => (
+                  <p key={i} style={{ margin: 0 }}>{line}</p>
+                ))}
               </div>
             ))}
           </div>
@@ -70,6 +97,7 @@ const Chatbot = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyPress} // Listen for Enter key
               placeholder="Type a message..."
               style={styles.chatInput}
             />

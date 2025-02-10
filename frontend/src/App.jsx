@@ -34,7 +34,7 @@ const App = () => {
       </Routes>
       <Footer />
 
-      <Chatbot />
+      <Chatbot/>
     </div>
   )
 }
