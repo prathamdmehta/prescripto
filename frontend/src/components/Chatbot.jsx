@@ -27,7 +27,7 @@ const Chatbot = () => {
     if (
       lowerInput.includes("book an appointment") || 
       lowerInput.includes("schedule a visit") ||
-      lowerInput.includes("how to book")
+      lowerInput.includes("how to book") || lowerInput.includes("appointment") 
     ) {
       botResponse = 
         "📅 How to book an appointment:\n" +
