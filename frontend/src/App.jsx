@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Chatbot from './components/Chatbot';
+import ScrollProgressBar from './components/ScrollProgressBar';
 import Home from './pages/Home';
 import Doctors from './pages/Doctors';
 import Login from './pages/Login';
@@ -85,9 +86,10 @@ const App = () => {
           ))}
         </Routes>
       </AnimatePresence>
-
+      <ScrollProgressBar />
       <Footer />
       <Chatbot />
+
     </div>
   );
 };
