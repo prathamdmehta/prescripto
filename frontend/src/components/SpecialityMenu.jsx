@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { specialityData } from '../assets/assets';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
