@@ -27,7 +27,7 @@ const Chatbot = () => {
     if (
       lowerInput.includes("book an appointment") || 
       lowerInput.includes("schedule a visit") ||
-      lowerInput.includes("how to book")
+      lowerInput.includes("how to book") || lowerInput.includes("appointment") 
     ) {
       botResponse = 
         "📅 How to book an appointment:\n" +
@@ -44,7 +44,7 @@ const Chatbot = () => {
       botResponse = 
         "💳 For payment-related queries:\n" +
         "📧 Email: support@prescripto.com\n" +
-        "📞 Phone: +91 9876543210";
+        "📞 Phone: +91 7666077745";
     }
 
     // Simulate bot response
