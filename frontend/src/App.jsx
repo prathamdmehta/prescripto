@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify';
+import ClickSpark from "./components/ClickSpark";
 
 // blur transition variants
 const pageVariants = {
@@ -50,6 +51,7 @@ const App = () => {
 
   return (
     <div className='mx-4 sm:mx-[10%]'>
+      <ClickSpark />
       <ToastContainer />
       <Navbar />
 
@@ -88,6 +90,7 @@ const App = () => {
       <ScrollProgressBar />
       <Footer />
       <Chatbot />
+      
 
     </div>
   );
