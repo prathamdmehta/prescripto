@@ -1,16 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IconButton } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hello! How can I help you?", sender: "bot" }
+    { text: "Hello! How can I help you?", sender: "bot" },
   ]);
   const [input, setInput] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const toggleChat = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 5000); // Hide after 5 seconds
+    }, 6000); // Show every 7 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollButton(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -19,54 +42,65 @@ const Chatbot = () => {
     setMessages(newMessages);
     setInput("");
 
-    // Convert input to lowercase for better keyword detection
     const lowerInput = input.toLowerCase();
-
     let botResponse = "I'm still learning! How can I assist you?";
 
     if (
-      lowerInput.includes("book an appointment") || 
+      lowerInput.includes("book an appointment") ||
       lowerInput.includes("schedule a visit") ||
-      lowerInput.includes("how to book") || lowerInput.includes("appointment") 
+      lowerInput.includes("how to book") ||
+      lowerInput.includes("appointment")
     ) {
-      botResponse = 
+      botResponse =
         "📅 How to book an appointment:\n" +
         "1️⃣ First, log in to your account.\n" +
         "2️⃣ Go to the 'All Doctors' section.\n" +
         "3️⃣ Select the type of doctor you need.\n" +
         "4️⃣ Choose an available time slot and confirm your booking.";
     } else if (
-      lowerInput.includes("payment") || 
-      lowerInput.includes("refund") || 
-      lowerInput.includes("money") || 
+      lowerInput.includes("payment") ||
+      lowerInput.includes("refund") ||
+      lowerInput.includes("money") ||
       lowerInput.includes("transaction")
     ) {
-      botResponse = 
+      botResponse =
         "💳 For payment-related queries:\n" +
         "📧 Email: support@prescripto.com\n" +
         "📞 Phone: +91 7666077745";
     }
 
-    // Simulate bot response
     setTimeout(() => {
       setMessages((prev) => [...prev, { text: botResponse, sender: "bot" }]);
     }, 1000);
   };
 
-  // Handle Enter key press to send message
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSend();
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div style={styles.chatbotContainer}>
-      {/* Floating Chat Button */}
-      {!isOpen && (
-        <IconButton style={styles.chatButton} onClick={toggleChat}>
-          <ChatIcon />
+      {/* Scroll to Top Button */}
+      {showScrollButton && (
+        <IconButton style={styles.scrollButton} onClick={scrollToTop}>
+          <ArrowUpwardIcon />
         </IconButton>
+      )}
+
+      {/* Floating Chat Button with Popup */}
+      {!isOpen && (
+        <div style={styles.chatIconContainer}>
+          {showPopup && <div className="popupMessage">Ask Query</div>}
+          <IconButton style={styles.chatButton} onClick={toggleChat}>
+            <ChatIcon />
+          </IconButton>
+        </div>
       )}
 
       {/* Chat Window */}
@@ -81,12 +115,16 @@ const Chatbot = () => {
 
           <div style={styles.chatBody}>
             {messages.map((msg, index) => (
-              <div 
-                key={index} 
-                style={msg.sender === "user" ? styles.userMessage : styles.botMessage}
+              <div
+                key={index}
+                style={
+                  msg.sender === "user" ? styles.userMessage : styles.botMessage
+                }
               >
                 {msg.text.split("\n").map((line, i) => (
-                  <p key={i} style={{ margin: 0 }}>{line}</p>
+                  <p key={i} style={{ margin: 0 }}>
+                    {line}
+                  </p>
                 ))}
               </div>
             ))}
@@ -97,7 +135,7 @@ const Chatbot = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyPress} // Listen for Enter key
+              onKeyDown={handleKeyPress}
               placeholder="Type a message..."
               style={styles.chatInput}
             />
@@ -111,13 +149,28 @@ const Chatbot = () => {
   );
 };
 
-// Inline styles
+// Styles
 const styles = {
   chatbotContainer: {
     position: "fixed",
     bottom: "20px",
     right: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "10px",
     zIndex: 1000,
+  },
+  scrollButton: {
+    backgroundColor: "#007bff",
+    bottom: "33px",
+    // right: "5px",
+    color: "#fff",
+    padding: "10px",
+    borderRadius: "50%",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    cursor: "pointer",
+    marginBottom: "10px",
   },
   chatButton: {
     backgroundColor: "#007bff",

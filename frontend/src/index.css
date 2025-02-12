@@ -21,3 +21,76 @@
 ::-webkit-scrollbar {
     @apply hidden
 }
+
+.chatIconContainer {
+    position: relative;  /* Ensure it serves as the reference for absolute positioning */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+ 
+  @keyframes popInOut {
+    0% { 
+      transform: scale(0); /* Start from zero */
+      opacity: 0; 
+      transform-origin: bottom right; /* Start from triangle tip */
+    }
+    10% { 
+      transform: scale(1.1); /* Slightly bigger for a pop effect */
+      opacity: 1; 
+      transform-origin: bottom right;
+    }
+    20% {
+      transform: scale(1); /* Normal size */
+      transform-origin: bottom right;
+    }
+    80% { 
+      transform: scale(1);
+      opacity: 1;
+      transform-origin: bottom right;
+    }
+    100% { 
+      transform: scale(0); /* Shrink down to triangle tip */
+      opacity: 0; 
+      transform-origin: bottom right; /* Shrinks towards this point */
+    }
+  }
+  
+  /* Popup Message */
+  .popupMessage {
+    position: absolute;
+    bottom: 55px; /* Distance above the chat button */
+    right: 0;
+    background: #007bff;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 15px;
+    white-space: nowrap;
+    z-index: 10;
+  
+    /* Apply the pop-in-out animation */
+    animation: popInOut 5s ease-in-out;
+    transform-origin: bottom right; /* Set origin near triangle */
+  }
+  
+  /* Small Triangle (Pinpoint) */
+  .popupMessage::after {
+    content: "";
+    position: absolute;
+    bottom: -8px; /* Stick to bottom */
+    right: 15px; /* Align near right side */
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #007bff; /* Match background color */
+  }
+  
+  
+  /* Prevent chat button from shifting */
+  .chatButton {
+    position: relative;
+    z-index: 5; /* Ensure it doesn’t get pushed */
+  }
