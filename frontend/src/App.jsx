@@ -16,6 +16,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify';
 import ClickSpark from "./components/ClickSpark";
+import ForgotPassword from './pages/ForgotPassword'; 
+import ResetPassword from './pages/ResetPassword';
 
 // blur transition variants
 const pageVariants = {
@@ -23,28 +25,6 @@ const pageVariants = {
   animate: { filter: "blur(0px)", opacity: 1, transition: { duration: 0.5 } },
   exit: { filter: "blur(10px)", opacity: 0, transition: { duration: 0.3 } }
 };
-
-//Rotate transition
-// const pageVariants = {
-//   initial: { rotateY: 90, opacity: 0 },
-//   animate: { rotateY: 0, opacity: 1, transition: { duration: 0.6 } },
-//   exit: { rotateY: -90, opacity: 0, transition: { duration: 0.4 } }
-// };
-
-//Scale in and Scale out transition
-// const pageVariants = {
-//   initial: { scale: 0.9, opacity: 0 },
-//   animate: { scale: 1, opacity: 1, transition: { duration: 0.5 } },
-//   exit: { scale: 0.9, opacity: 0, transition: { duration: 0.3 } }
-// };
-
-//fade in and fade out transition
-// const pageVariants = {
-//   initial: { opacity: 0 },
-//   animate: { opacity: 1, transition: { duration: 0.5 } },
-//   exit: { opacity: 0, transition: { duration: 0.3 } }
-// };
-
 
 const App = () => {
   const location = useLocation(); // Track route changes
@@ -68,7 +48,9 @@ const App = () => {
             { path: '/appointment/:docId', Component: Appointment },
             { path: '/my-appointments', Component: MyAppointments },
             { path: '/my-profile', Component: MyProfile },
-            { path: '/verify', Component: Verify }
+            { path: '/verify', Component: Verify },
+            { path: '/forgot-password', Component: ForgotPassword },
+            { path: '/reset-password/:token', Component: ResetPassword}
           ].map(({ path, Component }) => (
             <Route
               key={path}

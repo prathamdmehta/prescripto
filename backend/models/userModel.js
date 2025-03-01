@@ -9,7 +9,9 @@ const userSchema = new mongoose.Schema({
     gender: { type: String, default: 'Not Selected' },
     dob: { type: String, default: 'Not Selected' },
     password: { type: String, required: true },
-})
+    resetPasswordToken: { type: String, default: null },  // Token for password reset
+    resetPasswordExpires: { type: Date, default: null },  // Expiry time for the token
+}, { timestamps: true }); // Adds createdAt and updatedAt fields
 
 const userModel = mongoose.models.user || mongoose.model("user", userSchema);
 export default userModel;
