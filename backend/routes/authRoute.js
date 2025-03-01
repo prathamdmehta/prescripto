@@ -38,7 +38,8 @@ router.post("/forgot-password", async (req, res) => {
     console.log("✅ Updated User:", updatedUser);
 
     // Send email with reset link (using nodemailer)
-    const resetLink = `http://localhost:5173/reset-password/${resetToken}`;
+    // const resetLink = `http://localhost:5173/reset-password/${resetToken}`;
+    const resetLink = `http://prescriptobypm.onrender.com/reset-password/${resetToken}`;
     console.log(`📩 Sending reset email to ${email} with link: ${resetLink}`);
 
     // Configure nodemailer
